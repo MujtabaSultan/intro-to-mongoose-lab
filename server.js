@@ -6,6 +6,14 @@ const mongoose = require("mongoose");
 const Customer = require("./models/customer");
 
 const deleteCustomer = async () => {
+  const customer = await Customer.find({});
+  console.log(`below is a list of customers : \n`);
+  customer.forEach((element) => {
+    console.log(
+      `ID: ${element.id} -- name: ${element.name}  , age ${element.age} \n`
+    );
+  });
+
   const customerID = prompt("What is the ID of the customer ? ");
   const removedCustomer = await Customer.findByIdAndDelete(customerID);
   console.log("Removed Customer:", removedCustomer);
